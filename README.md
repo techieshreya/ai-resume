@@ -3,7 +3,7 @@
 > A full-stack AI-powered resume builder that writes professional content, compiles real-time PDFs, and analyzes your resume against Job Descriptions to help you beat the ATS.
 
 ![Project Status](https://img.shields.io/badge/Status-MVP_Complete-success)
-![Stack](https://img.shields.io/badge/Stack-Next.js_FastAPI_Gemini-blue)
+![Stack](https://img.shields.io/badge/Stack-Next.js_16_FastAPI_Gemini_2.5_Typst-blue)
 
 ## 🌟 Features
 
@@ -26,15 +26,16 @@
 ## 🏗️ Tech Stack
 
 ### **Frontend**
-* **Framework:** Next.js 14 (React)
-* **Styling:** Tailwind CSS
+* **Framework:** Next.js 16 (React 19)
+* **Styling:** Tailwind CSS 4
 * **Icons:** Lucide React
 * **Editor:** Monaco Editor (VS Code style text editing)
+* **Language:** TypeScript
 
 ### **Backend**
 * **Server:** FastAPI (Python)
-* **AI Engine:** Google Gemini Pro (`langchain-google-genai`)
-* **PDF Engine:** Typst (Local Compiler)
+* **AI Engine:** Google Gemini 2.5 Flash/Pro (`langchain-google-genai`, `langgraph`)
+* **PDF Engine:** Typst (Python `typst` library)
 * **Package Manager:** uv
 
 ---
@@ -43,11 +44,29 @@
 
 ### Prerequisites
 1.  **Node.js** (v18+)
-2.  **Python** (v3.10+)
-3.  **Google Gemini API Key** (Get one [here](https://aistudio.google.com/))
-4.  **Typst** (Install via `pip` or system package manager)
+2.  **Python** (v3.11+)
+3.  **Google Gemini API Key** (Set `GOOGLE_API_KEY`, get one [here](https://aistudio.google.com/))
+4.  **uv** (recommended for dependency installs)
+5.  **Typst** (installed via the Python `typst` package)
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/yourusername/ai-resume-agent.git](https://github.com/yourusername/ai-resume-agent.git)
+git clone https://github.com/yourusername/ai-resume-agent.git
 cd ai-resume-agent
+```
+
+### 2. Backend Setup (FastAPI + Gemini)
+```bash
+uv sync
+export GOOGLE_API_KEY="your-key-here"
+uv run uvicorn src.server:app --host 0.0.0.0 --port 8000 --reload
+```
+
+### 3. Frontend Setup (Next.js)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). The frontend expects the backend at `http://localhost:8000`.
