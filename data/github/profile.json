@@ -1,0 +1,66 @@
+{
+  "full_name": "techieshreya",
+  "github_username": "techieshreya",
+  "email": "Email not public",
+  "bio": "",
+  "projects": [
+    {
+      "name": "spotsync",
+      "url": "https://github.com/techieshreya/spotsync",
+      "stars": 0,
+      "description_raw": "No description provided.",
+      "tech_stack": [
+        "TypeScript"
+      ],
+      "refined_bullets": [],
+      "impact_metrics": []
+    },
+    {
+      "name": "travelio",
+      "url": "https://github.com/techieshreya/travelio",
+      "stars": 0,
+      "description_raw": "No description provided.",
+      "tech_stack": [
+        "TypeScript"
+      ],
+      "refined_bullets": [],
+      "impact_metrics": []
+    },
+    {
+      "name": "Brain-Tumor-Segemenation-Using-U-Net",
+      "url": "https://github.com/techieshreya/Brain-Tumor-Segemenation-Using-U-Net",
+      "stars": 0,
+      "description_raw": "No description provided.",
+      "tech_stack": [
+        "Python"
+      ],
+      "refined_bullets": [],
+      "impact_metrics": []
+    },
+    {
+      "name": "travel-planner",
+      "url": "https://github.com/techieshreya/travel-planner",
+      "stars": 0,
+      "description_raw": "No description provided.",
+      "tech_stack": [
+        "TypeScript"
+      ],
+      "refined_bullets": [],
+      "impact_metrics": []
+    },
+    {
+      "name": "yolox-cotton-disease",
+      "url": "https://github.com/techieshreya/yolox-cotton-disease",
+      "stars": 0,
+      "description_raw": "Improving detection of cotton plant diseases",
+      "tech_stack": [
+        "Python"
+      ],
+      "refined_bullets": [],
+      "impact_metrics": []
+    }
+  ],
+  "experience": [],
+  "skills": [],
+  "known_gaps": []
+}

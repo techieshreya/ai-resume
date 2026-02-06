@@ -1,0 +1,76 @@
+{
+  "full_name": "Ayush chauhan",
+  "github_username": "AyushChauhan9389",
+  "email": "Email not public",
+  "bio": "",
+  "projects": [
+    {
+      "name": "next-template",
+      "url": "https://github.com/AyushChauhan9389/next-template",
+      "stars": 3,
+      "description_raw": "Nextjs Template configured with Drizzle orm and Clerk Auth",
+      "tech_stack": [
+        "TypeScript"
+      ],
+      "metrics_raw": null,
+      "refined_bullets": [],
+      "impact_metrics": [],
+      "is_refined": false
+    },
+    {
+      "name": "Exam-portal",
+      "url": "https://github.com/AyushChauhan9389/Exam-portal",
+      "stars": 1,
+      "description_raw": "No description provided.",
+      "tech_stack": [
+        "TypeScript"
+      ],
+      "metrics_raw": null,
+      "refined_bullets": [],
+      "impact_metrics": [],
+      "is_refined": false
+    },
+    {
+      "name": "Exam-Platform-backend",
+      "url": "https://github.com/AyushChauhan9389/Exam-Platform-backend",
+      "stars": 1,
+      "description_raw": "No description provided.",
+      "tech_stack": [
+        "TypeScript"
+      ],
+      "metrics_raw": null,
+      "refined_bullets": [],
+      "impact_metrics": [],
+      "is_refined": false
+    },
+    {
+      "name": "travelblogv2",
+      "url": "https://github.com/AyushChauhan9389/travelblogv2",
+      "stars": 1,
+      "description_raw": "Travel blog v2 with vercel Prostgres and blob",
+      "tech_stack": [
+        "TypeScript"
+      ],
+      "metrics_raw": null,
+      "refined_bullets": [],
+      "impact_metrics": [],
+      "is_refined": false
+    },
+    {
+      "name": "clusterkabot",
+      "url": "https://github.com/AyushChauhan9389/clusterkabot",
+      "stars": 1,
+      "description_raw": "No description provided.",
+      "tech_stack": [
+        "Python"
+      ],
+      "metrics_raw": null,
+      "refined_bullets": [],
+      "impact_metrics": [],
+      "is_refined": false
+    }
+  ],
+  "experience": [],
+  "skills": [],
+  "known_gaps": []
+}

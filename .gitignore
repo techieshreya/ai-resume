@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules/
+.venv/
+venv/
+__pycache__/
+
+# Environment variables (NEVER upload these!)
+.env
+
+# Generated files
+output/*.pdf
+*.log
+.DS_Store
+
+# IDE settings
+.vscode/
