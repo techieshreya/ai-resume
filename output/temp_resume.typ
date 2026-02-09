@@ -7,7 +7,7 @@
     
     // Header
     #align(center)[
-      #text(size: 17pt, weight: "bold")[Techieshreya]       #link("https://github.com/techieshreya")[github.com/techieshreya] | your.email\@example.com
+      #text(size: 17pt, weight: "bold")[Ayush Chauhan]       #link("https://github.com/Ayushchauhan9389")[github.com/Ayushchauhan9389] | your.email\@example.com
       #line(length: 100%, stroke: 1pt + gray)
     ]
     
@@ -25,8 +25,11 @@
     
     // --- SUMMARY ---
     == Summary
-    Aspiring Software Engineer...
+    
     
 == Projects
-#project_item("Demo Project 2", "Docker, FastAPI", ("*   Deployed a new microservice into production environments, leveraging containerization technologies and automated CI/CD pipelines.", "*   Enhanced application scalability and resilience, facilitating faster feature development and improving overall system modularity."))
-#project_item("Demo Project 1", "Python, React", ("*   **Developed and successfully launched an innovative application**, overseeing the complete product lifecycle from initial concept to public deployment.", "*   **Engineered key user-centric features and intuitive UI/UX design**, resulting in a highly engaging and streamlined user experience."))
+#project_item("next-template", "TypeScript", ("Nextjs Template configured with Drizzle orm and Clerk Auth"))
+#project_item("Exam-portal", "TypeScript", ("No description provided."))
+#project_item("Exam-Platform-backend", "TypeScript", ("No description provided."))
+#project_item("travelblogv2", "TypeScript", ("Travel blog v2 with vercel Prostgres and blob"))
+#project_item("clusterkabot", "Python", ("No description provided."))

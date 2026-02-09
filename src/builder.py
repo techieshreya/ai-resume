@@ -12,7 +12,7 @@ def escape_typst(text: str) -> str:
     text = text.replace('"', '\\"')
     return text
 
-def build_typst_code(profile: dict, analysis: dict = None) -> str:
+def build_typst_code(profile: dict, analysis: dict = None, template_name: str="modern") -> str:
     if analysis is None: analysis = {}
     
     # --- DATA PREPARATION ---
