@@ -1,99 +1,128 @@
 "use client";
-import React from 'react';
-import Link from 'next/link';
-import { Sparkles, ArrowRight, Star } from 'lucide-react';
+import React from "react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="pt-32 pb-20 px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 mb-8">
-            <Sparkles size={16} className="text-blue-600 dark:text-blue-400" />
-            <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-              AI-Powered Resume Builder
+    <section className="relative pt-24 pb-20 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 pattern-grid opacity-[0.03] dark:opacity-[0.05] pointer-events-none"></div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        {/* Badge */}
+        <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-[#6366F1] text-xs font-bold tracking-widest uppercase mb-6">
+          <span className="material-symbols-outlined text-base">auto_awesome</span>
+          AI-Powered Resume Builder
+        </span>
+
+        {/* Headline */}
+        <h1 className="text-4xl md:text-6xl font-serif text-gray-900 dark:text-white leading-tight mb-8">
+          Build Your Dream Resume in{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] to-purple-600">
+            Minutes
+          </span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-12 font-light">
+          Create professional, ATS-optimized resumes with AI assistance. Match
+          job descriptions, get instant feedback, and land your dream job faster.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/signup"
+            className="group px-8 py-4 rounded-xl bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 font-semibold shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2"
+          >
+            Start Building Free
+            <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">
+              arrow_forward
             </span>
-          </div>
+          </Link>
+          <a
+            href="#features"
+            className="px-8 py-4 rounded-xl bg-white dark:bg-gray-800 border border-[#E5E7EB] dark:border-[#374151] hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold transition-all duration-200"
+          >
+            See How It Works
+          </a>
+        </div>
 
-          {/* Headline */}
-          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-            Build Your Dream Resume in{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-              Minutes
-            </span>
-          </h1>
-
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto">
-            Create professional, ATS-optimized resumes with AI assistance. Match job descriptions, get instant feedback, and land your dream job faster.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/builder"
-              className="group px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-2"
-            >
-              Start Building Free
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <a
-              href="#features"
-              className="px-8 py-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-900 dark:text-white font-bold transition-all duration-200"
-            >
-              See How It Works
-            </a>
-          </div>
-
-          {/* Social Proof */}
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-600 dark:text-gray-500">
-            <div className="flex items-center gap-2">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div 
-                    key={i} 
-                    className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 border-2 border-white dark:border-[#0A0A0A] flex items-center justify-center text-white text-xs font-bold"
-                  >
-                    {String.fromCharCode(64 + i)}
-                  </div>
-                ))}
-              </div>
-              <span className="font-medium text-gray-700 dark:text-gray-300">10,000+ users</span>
-            </div>
-            <div className="flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+        {/* Social Proof */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-2">
+            <div className="flex -space-x-2">
+              {["DC", "SM", "MJ", "ER"].map((initials, i) => (
+                <div
+                  key={i}
+                  className="w-8 h-8 rounded-full bg-gradient-to-br from-[#6366F1] to-purple-500 border-2 border-white dark:border-gray-900 flex items-center justify-center text-white text-xs font-bold"
+                >
+                  {initials}
+                </div>
               ))}
-              <span className="ml-2 font-medium text-gray-700 dark:text-gray-300">4.9/5 rating</span>
             </div>
+            <span className="font-medium text-gray-700 dark:text-gray-300">
+              10,000+ users
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <span
+                key={i}
+                className="material-symbols-outlined text-yellow-400 text-lg"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
+                star
+              </span>
+            ))}
+            <span className="ml-2 font-medium text-gray-700 dark:text-gray-300">
+              4.9/5 rating
+            </span>
           </div>
         </div>
 
-        {/* Hero Image/Demo Preview */}
-        <div className="mt-20 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl"></div>
-          <div className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-            <div className="aspect-video flex items-center justify-center p-8">
-              {/* Mock Interface Preview */}
-              <div className="w-full h-full bg-white dark:bg-[#0A0A0A] rounded-xl border border-gray-200 dark:border-white/10 p-6 flex gap-4">
-                {/* Sidebar Mock */}
-                <div className="w-1/4 bg-gray-100 dark:bg-white/5 rounded-lg p-4 space-y-3">
-                  <div className="h-3 bg-gray-300 dark:bg-white/10 rounded w-3/4"></div>
-                  <div className="h-3 bg-gray-300 dark:bg-white/10 rounded w-1/2"></div>
-                  <div className="h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg mt-4"></div>
-                </div>
-                {/* Content Mock */}
-                <div className="flex-1 space-y-3">
-                  <div className="h-4 bg-gray-300 dark:bg-white/10 rounded w-1/3"></div>
-                  <div className="h-3 bg-gray-200 dark:bg-white/5 rounded w-full"></div>
-                  <div className="h-3 bg-gray-200 dark:bg-white/5 rounded w-5/6"></div>
-                  <div className="h-3 bg-gray-200 dark:bg-white/5 rounded w-4/6"></div>
-                </div>
-                {/* Preview Mock */}
-                <div className="w-1/3 bg-gray-100 dark:bg-white/5 rounded-lg"></div>
+        {/* Value Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-20">
+          {[
+            {
+              icon: "visibility",
+              iconColor: "text-blue-600",
+              iconBg: "bg-blue-50 dark:bg-blue-900/20",
+              title: "Transparency First",
+              desc: "Our AI doesn't just generate text; it explains why. We believe in white-box AI that educates users while it assists them.",
+            },
+            {
+              icon: "handshake",
+              iconColor: "text-purple-600",
+              iconBg: "bg-purple-50 dark:bg-purple-900/20",
+              title: "Human-AI Partnership",
+              desc: "Technology should amplify human potential, not replace it. You control the narrative; we handle the formatting and optimization.",
+            },
+            {
+              icon: "lock",
+              iconColor: "text-emerald-600",
+              iconBg: "bg-emerald-50 dark:bg-emerald-900/20",
+              title: "Data Privacy",
+              desc: "Your career history is personal. We employ enterprise-grade encryption and never sell your data to third-party recruiters.",
+            },
+          ].map((card, i) => (
+            <div
+              key={i}
+              className="group p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            >
+              <div
+                className={`w-12 h-12 ${card.iconBg} rounded-xl flex items-center justify-center ${card.iconColor} mb-4 group-hover:scale-110 transition-transform`}
+              >
+                <span className="material-symbols-outlined">{card.icon}</span>
               </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                {card.title}
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                {card.desc}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -42,6 +42,16 @@ class SkillGap(BaseModel):
     missing_skill: str
     recommendation: str  # e.g. "Build a small project using Terraform"
 
+class PipelineConfig(BaseModel):
+    """
+    Configuration for an 'AI Agent' pipeline that transforms the resume.
+    """
+    name: str # e.g. "SRE Agent", "Frontend Specialist"
+    include_tags: List[str] = [] # Projects MUST have ONE of these tags (OR logic)
+    exclude_tags: List[str] = [] # Projects MUST NOT have ANY of these tags
+    section_order: List[str] = ["summary", "experience", "projects", "education", "skills"]
+    template_id: str = "modern"
+
 
 # --- NEW MODELS FOR PHASE 4 (Job Matching) ---
 

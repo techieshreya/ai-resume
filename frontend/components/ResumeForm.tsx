@@ -1,40 +1,16 @@
-import React, { useState} from 'react';
-import { User, Mail, FileText, Briefcase, Wand2, Loader2, Plus, Trash2, Github } from 'lucide-react';
+import React, { useState } from 'react';
 import axios from 'axios';
+
+const API_URL = "http://localhost:8000";
 
 interface ResumeFormProps {
   data: any;
   onChange: (newData: any) => void;
-  isDarkMode?: boolean; // Added this prop
+  isDarkMode?: boolean;
 }
-
-const API_URL = "http://localhost:8000";
 
 export default function ResumeForm({ data, onChange, isDarkMode = true }: ResumeFormProps) {
   const [rewritingIndex, setRewritingIndex] = useState<number | null>(null);
-
-  // ================= THEME ENGINE =================
-  const theme = {
-    // Text
-    text: isDarkMode ? "text-white" : "text-gray-900",
-    textSec: isDarkMode ? "text-gray-400" : "text-gray-500",
-    label: isDarkMode ? "text-gray-500" : "text-gray-600",
-    placeholder: isDarkMode ? "placeholder-gray-600" : "placeholder-gray-400",
-    
-    // Backgrounds & Borders
-    bg: isDarkMode ? "bg-[#0A0A0A]" : "bg-transparent", // Transparent lets parent bg show
-    cardBg: isDarkMode ? "bg-white/5" : "bg-white",
-    inputBg: isDarkMode ? "bg-white/5" : "bg-white",
-    border: isDarkMode ? "border-white/10" : "border-gray-200",
-    focusBorder: isDarkMode ? "focus:border-blue-500/50" : "focus:border-blue-500",
-    
-    // Specific Input Styles
-    inputClasses: `w-full p-3.5 rounded-xl outline-none transition-all duration-200 backdrop-blur-sm border 
-      ${isDarkMode 
-        ? "bg-gradient-to-br from-white/5 to-white/[0.02] border-white/10 text-white focus:bg-white/[0.07]" 
-        : "bg-white border-gray-200 text-gray-900 focus:bg-white shadow-sm hover:border-gray-300"
-      }`
-  };
 
   // ================= HANDLERS =================
   const handleChange = (field: string, value: string) => {
@@ -74,230 +50,182 @@ export default function ResumeForm({ data, onChange, isDarkMode = true }: Resume
     onChange({ ...data, projects: newProjects });
   };
 
-  // ================= RENDER =================
   return (
-    <div className={`p-8 space-y-10 overflow-y-auto h-full pb-24 ${theme.bg}`}>
-      
-      {/* ========== PERSONAL INFO SECTION ========== */}
-      <section className="space-y-5">
-        <div className={`flex items-center gap-3 pb-4 border-b ${theme.border}`}>
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-            <User size={16} className="text-white" />
-          </div>
-          <h3 className="text-lg font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            Personal Information
-          </h3>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Full Name */}
-          <div className="space-y-2 group">
-            <label className={`text-xs uppercase font-bold ${theme.label} tracking-wider`}>
-              Full Name
-            </label>
-            <div className="relative">
-              <input
-                className={`${theme.inputClasses} ${theme.placeholder} ${theme.focusBorder}`}
-                value={data.full_name || ""}
-                onChange={(e) => handleChange("full_name", e.target.value)}
-                placeholder="John Doe"
-              />
+    <div className="space-y-8">
+
+      {/* 1. PERSONAL DETAILS */}
+      <section className="rounded-2xl bg-white dark:bg-[#151E2E] shadow-boutique card-grain border border-white/50 dark:border-white/5 group hover:border-teal-400/30 dark:hover:border-teal-400/30 transition-colors duration-300">
+        <div className="card-content p-8">
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-100 dark:border-gray-800">
+            <div className="flex items-center">
+              <div className="h-10 w-10 rounded-full bg-navy-50 dark:bg-navy-900 flex items-center justify-center text-navy-900 dark:text-teal-400 mr-4 ring-4 ring-navy-50/50 dark:ring-navy-900/50">
+                <span className="material-symbols-outlined text-xl">person_outline</span>
+              </div>
+              <h2 className="font-serif text-xl text-navy-900 dark:text-white">Personal Details</h2>
             </div>
+            <span className="text-xs font-bold text-teal-500 bg-teal-50 dark:bg-teal-900/30 px-2 py-1 rounded">100%</span>
           </div>
 
-          {/* GitHub Username (Read-only) */}
-          <div className="space-y-2">
-            <label className={`text-xs uppercase font-bold ${theme.label} tracking-wider flex items-center gap-2`}>
-              <Github size={12} />
-              GitHub Username
-            </label>
-            <div className="relative">
+          <div className="grid grid-cols-2 gap-6 mb-6">
+            <div className="col-span-2 lg:col-span-1">
+              <label className="block text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2 font-sans">Full Name</label>
               <input
-                className={`w-full p-3.5 rounded-xl cursor-not-allowed border ${isDarkMode ? "bg-white/[0.02] border-white/5 text-gray-500" : "bg-gray-100 border-gray-200 text-gray-500"}`}
+                className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-lg py-3 px-4 text-sm font-medium text-navy-900 dark:text-white focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all placeholder:text-gray-400"
+                type="text"
+                value={data.full_name || ""}
+                onChange={(e) => handleChange("full_name", e.target.value)}
+                placeholder="Ex. Jane Doe"
+              />
+            </div>
+            {/* Note: Profile Title/Role isn't in original data schema but good to add if supported */}
+            <div className="col-span-2 lg:col-span-1">
+              <label className="block text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2 font-sans">GitHub Username</label>
+              <input
+                className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-lg py-3 px-4 text-sm font-medium text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                type="text"
                 value={data.github_username || ""}
                 readOnly
               />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] uppercase font-bold text-gray-500 bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded">
-                Auto
-              </div>
             </div>
           </div>
-        </div>
 
-        {/* Email */}
-        <div className="space-y-2 group">
-          <label className={`text-xs uppercase font-bold ${theme.label} tracking-wider`}>
-            Email Address
-          </label>
-          <div className="relative">
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-              <Mail size={16} />
+          <div className="mb-6">
+            <label className="block text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2 font-sans">Email Address</label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                <span className="material-symbols-outlined text-[18px]">mail</span>
+              </span>
+              <input
+                className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-lg py-3 pl-10 pr-4 text-sm font-medium text-navy-900 dark:text-white focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 transition-all"
+                type="email"
+                value={data.email || ""}
+                onChange={(e) => handleChange("email", e.target.value)}
+                placeholder="you@example.com"
+              />
             </div>
-            <input
-              className={`${theme.inputClasses} pl-12 ${theme.placeholder} ${theme.focusBorder}`}
-              value={data.email || ""}
-              onChange={(e) => handleChange("email", e.target.value)}
-              placeholder="you@example.com"
-              type="email"
-            />
           </div>
         </div>
       </section>
 
-      {/* ========== PROFESSIONAL SUMMARY ========== */}
-      <section className="space-y-5">
-        <div className={`flex items-center gap-3 pb-4 border-b ${theme.border}`}>
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
-            <FileText size={16} className="text-white" />
+      {/* 2. PROFESSIONAL SUMMARY */}
+      <section className="rounded-2xl bg-white dark:bg-[#151E2E] shadow-boutique card-grain border border-white/50 dark:border-white/5 group hover:border-purple-400/30 dark:hover:border-purple-400/30 transition-colors duration-300">
+        <div className="card-content p-8">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100 dark:border-gray-800">
+            <div className="flex items-center">
+              <div className="h-10 w-10 rounded-full bg-purple-50 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-300 mr-4 ring-4 ring-purple-50/50 dark:ring-purple-900/30">
+                <span className="material-symbols-outlined text-xl">auto_awesome</span>
+              </div>
+              <h2 className="font-serif text-xl text-navy-900 dark:text-white">Professional Summary</h2>
+            </div>
+            {/* AI Rewrite for Bio? If implemented later */}
           </div>
-          <h3 className="text-lg font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-            Professional Summary
-          </h3>
-        </div>
-        
-        <div className="space-y-2 group">
-          <label className={`text-xs uppercase font-bold ${theme.label} tracking-wider`}>
-            About You
-          </label>
-          <div className="relative">
+          <div>
             <textarea
-              className={`${theme.inputClasses} h-40 resize-none leading-relaxed ${theme.placeholder} ${theme.focusBorder}`}
+              className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 rounded-xl py-4 px-4 text-sm font-medium text-navy-900 dark:text-white focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all leading-relaxed resize-none shadow-inner scrollbar-thin"
+              rows={6}
               value={data.bio || ""}
               onChange={(e) => handleChange("bio", e.target.value)}
-              placeholder="Write a compelling professional summary that highlights your expertise and career goals..."
+              placeholder="Aspiring Software Engineer with a passion for building scalable web applications..."
             />
+            <div className="flex justify-between mt-3 text-xs text-gray-400">
+              <span>Suggested length: 3-5 sentences</span>
+              <span>{data.bio?.length || 0} characters</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ========== PROJECTS SECTION ========== */}
-      <section className="space-y-6">
-        <div className={`flex items-center justify-between pb-4 border-b ${theme.border}`}>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-green-500/20">
-              <Briefcase size={16} className="text-white" />
-            </div>
-            <h3 className="text-lg font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
-              Projects
-            </h3>
-          </div>
-          
-          <button
-            onClick={addProject}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 hover:scale-105 active:scale-95"
-          >
-            <Plus size={16} />
-            Add Project
-          </button>
-        </div>
-        
-        {data.projects?.map((project: any, index: number) => (
-          <div
-            key={index}
-            className={`group relative ${theme.cardBg} border ${theme.border} p-6 rounded-2xl space-y-5 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300 shadow-sm`}
-          >
-            {/* Delete Button */}
-            <button
-              onClick={() => deleteProject(index)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 hover:bg-red-500/20 transition-all duration-200 opacity-0 group-hover:opacity-100"
-              title="Delete Project"
-            >
-              <Trash2 size={14} />
-            </button>
-
-            {/* Project Header */}
-            <div className="flex items-center justify-between pr-10">
-              <input
-                className={`bg-transparent text-xl font-bold outline-none w-full transition-colors ${theme.text} placeholder-gray-400 focus:text-blue-500`}
-                value={project.name}
-                onChange={(e) => handleProjectChange(index, "name", e.target.value)}
-                placeholder="Project Name"
-              />
-              <span className={`text-[10px] uppercase font-bold ${theme.textSec} ${isDarkMode ? "bg-white/10" : "bg-gray-100"} px-2 py-1 rounded`}>
-                #{index + 1}
-              </span>
-            </div>
-            
-            {/* Tech Stack */}
-            <div className="space-y-2">
-              <label className={`text-xs uppercase font-bold ${theme.label} tracking-wider`}>
-                Tech Stack
-              </label>
-              <div className="relative group/tech">
-                <input
-                  className={`${theme.inputClasses} ${isDarkMode ? "text-blue-300" : "text-blue-600"} ${theme.placeholder} ${theme.focusBorder}`}
-                  value={project.tech_stack?.join(", ") || ""}
-                  onChange={(e) => handleProjectChange(index, "tech_stack", e.target.value.split(",").map(s => s.trim()))}
-                  placeholder="React, Node.js, MongoDB"
-                />
+      {/* 3. KEY PROJECTS */}
+      <section className="rounded-2xl bg-white dark:bg-[#151E2E] shadow-boutique card-grain border border-white/50 dark:border-white/5 group hover:border-blue-400/30 dark:hover:border-blue-400/30 transition-colors duration-300">
+        <div className="card-content p-8">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center">
+              <div className="h-10 w-10 rounded-full bg-blue-50 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-300 mr-4 ring-4 ring-blue-50/50 dark:ring-blue-900/30">
+                <span className="material-symbols-outlined text-xl">rocket_launch</span>
               </div>
+              <h2 className="font-serif text-xl text-navy-900 dark:text-white">Key Projects</h2>
             </div>
-
-            {/* Description with AI Rewrite */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className={`text-xs uppercase font-bold ${theme.label} tracking-wider`}>
-                  Description
-                </label>
-                
-                {/* AI MAGIC BUTTON */}
-                <button
-                  onClick={() => handleRewrite(index, project.description_raw)}
-                  disabled={rewritingIndex === index}
-                  className="group/ai relative px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-[length:200%_100%] group-hover/ai:bg-[position:100%_0] transition-all duration-500"></div>
-                  <span className="relative z-10 flex items-center gap-1.5 text-white">
-                    {rewritingIndex === index ? (
-                      <>
-                        <Loader2 size={12} className="animate-spin" />
-                        Rewriting...
-                      </>
-                    ) : (
-                      <>
-                        <Wand2 size={12} className="group-hover/ai:rotate-12 transition-transform" />
-                        AI Enhance
-                      </>
-                    )}
-                  </span>
-                </button>
-              </div>
-              
-              <div className="relative group/desc">
-                <textarea
-                  className={`${theme.inputClasses} h-36 resize-none leading-relaxed ${theme.placeholder} ${theme.focusBorder}`}
-                  value={project.description_raw || ""}
-                  onChange={(e) => handleProjectChange(index, "description_raw", e.target.value)}
-                  placeholder="Describe your project... (e.g., 'Built a real-time chat app with WebSocket integration')"
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-        
-        {/* Empty State */}
-        {(!data.projects || data.projects.length === 0) && (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className={`w-20 h-20 rounded-2xl ${theme.inputBg} border ${theme.border} flex items-center justify-center mb-4`}>
-              <Briefcase size={32} className="text-gray-400" />
-            </div>
-            <p className={`${theme.textSec} font-medium mb-2`}>No projects yet</p>
-            <p className={`text-sm ${theme.textSec} mb-6 max-w-md`}>
-              Start building your portfolio by adding your first project. Click the "Add Project" button above.
-            </p>
             <button
               onClick={addProject}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 hover:scale-105 active:scale-95"
+              className="bg-navy-900 hover:bg-navy-800 dark:bg-white dark:hover:bg-gray-200 text-white dark:text-navy-900 text-xs font-bold py-2 px-4 rounded-lg flex items-center shadow-lg transition-all active:scale-95"
             >
-              <Plus size={16} />
-              Create First Project
+              <span className="material-symbols-outlined text-sm mr-1">add</span>
+              Add Project
             </button>
           </div>
-        )}
+
+          {/* Projects List */}
+          {(!data.projects || data.projects.length === 0) ? (
+            <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl p-10 text-center bg-gray-50/50 dark:bg-black/20 hover:bg-gray-50 dark:hover:bg-black/30 transition-colors cursor-pointer" onClick={addProject}>
+              <span className="material-symbols-outlined text-4xl text-gray-300 dark:text-gray-600 mb-2">folder_open</span>
+              <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">Your portfolio is empty.</p>
+              <p className="text-xs text-gray-400 mt-1">Showcase your best work here.</p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {data.projects.map((project: any, index: number) => (
+                <div key={index} className="relative p-6 rounded-xl bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 group/project hover:border-blue-400/50 transition-all">
+
+                  {/* Delete Button */}
+                  <button
+                    onClick={() => deleteProject(index)}
+                    className="absolute top-4 right-4 text-red-400 hover:text-red-500 opacity-0 group-hover/project:opacity-100 transition-opacity"
+                    title="Delete Project"
+                  >
+                    <span className="material-symbols-outlined text-lg">delete</span>
+                  </button>
+
+                  <div className="grid gap-4">
+                    <div>
+                      <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Project Name</label>
+                      <input
+                        className="w-full bg-white dark:bg-[#151E2E] border border-gray-200 dark:border-white/10 rounded-lg py-2 px-3 text-sm font-bold text-navy-900 dark:text-white focus:ring-2 focus:ring-blue-400/20 focus:border-blue-400"
+                        value={project.name}
+                        onChange={(e) => handleProjectChange(index, "name", e.target.value)}
+                        placeholder="Project Name"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Tech Stack</label>
+                      <input
+                        className="w-full bg-white dark:bg-[#151E2E] border border-gray-200 dark:border-white/10 rounded-lg py-2 px-3 text-sm text-blue-600 dark:text-blue-400 focus:ring-2 focus:ring-blue-400/20 focus:border-blue-400 placeholder:text-gray-400"
+                        value={project.tech_stack?.join(", ") || ""}
+                        onChange={(e) => handleProjectChange(index, "tech_stack", e.target.value.split(",").map(s => s.trim()))}
+                        placeholder="React, Node.js..."
+                      />
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between items-center mb-1.5">
+                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">Description</label>
+                        <button
+                          onClick={() => handleRewrite(index, project.description_raw)}
+                          disabled={rewritingIndex === index}
+                          className="flex items-center gap-1 text-[10px] font-bold text-purple-600 hover:text-purple-500 disabled:opacity-50"
+                        >
+                          <span className={`material-symbols-outlined text-sm ${rewritingIndex === index ? 'animate-spin' : ''}`}>
+                            {rewritingIndex === index ? 'refresh' : 'auto_awesome'}
+                          </span>
+                          {rewritingIndex === index ? 'Rewriting...' : 'Rewrite with AI'}
+                        </button>
+                      </div>
+                      <textarea
+                        className="w-full bg-white dark:bg-[#151E2E] border border-gray-200 dark:border-white/10 rounded-lg py-3 px-3 text-sm text-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 leading-relaxed resize-none"
+                        rows={4}
+                        value={project.description_raw || ""}
+                        onChange={(e) => handleProjectChange(index, "description_raw", e.target.value)}
+                        placeholder="Describe your contribution..."
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
-      {/* Bottom Spacer for Scroll */}
-      <div className="h-20"></div>
     </div>
   );
 }
