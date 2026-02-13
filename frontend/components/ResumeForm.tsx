@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://ai-resume-production-564b.up.railway.app";
 
 interface ResumeFormProps {
   data: any;

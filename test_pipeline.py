@@ -20,7 +20,7 @@ payload = {
 }
 
 try:
-    res = requests.post("http://localhost:8000/generate", json=payload)
+    res = requests.post("https://ai-resume-production-564b.up.railway.app/generate", json=payload)
     print(f"Status: {res.status_code}")
     if res.status_code == 200:
         data = res.json()

@@ -84,7 +84,7 @@ echo GOOGLE_API_KEY="your-key-here" > .env
 uv run src/server.py
 ```
 
-The backend runs at **http://localhost:8000**.
+The backend runs at **https://ai-resume-production-564b.up.railway.app**.
 
 ### 3. Frontend Setup
 

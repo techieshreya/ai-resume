@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useTheme } from '@/components/ThemeProvider';
 import WorkflowsTab, { PipelineConfig } from '@/components/WorkflowsTab';
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://ai-resume-production-564b.up.railway.app";
 
 export default function BuilderPage() {
   const router = useRouter();
@@ -213,8 +213,8 @@ export default function BuilderPage() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center px-3 py-1.5 rounded-md text-xs font-bold transition-all ${activeTab === tab.id
-                      ? 'bg-white dark:bg-navy-800 shadow-sm text-navy-900 dark:text-white ring-1 ring-black/5 dark:ring-white/10'
-                      : 'hover:bg-white/50 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400'
+                    ? 'bg-white dark:bg-navy-800 shadow-sm text-navy-900 dark:text-white ring-1 ring-black/5 dark:ring-white/10'
+                    : 'hover:bg-white/50 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400'
                     }`}
                 >
                   <span className="material-symbols-outlined text-sm mr-1.5">{tab.icon}</span>
@@ -244,8 +244,8 @@ export default function BuilderPage() {
             <button
               onClick={() => setShowPreview(!showPreview)}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-all border ${showPreview
-                  ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700'
-                  : 'text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-white/5'
+                ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700'
+                : 'text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-white/5'
                 }`}
             >
               <span className="material-symbols-outlined text-base">{showPreview ? 'vertical_split' : 'picture_as_pdf'}</span>
@@ -256,8 +256,8 @@ export default function BuilderPage() {
             <button
               onClick={() => setIsFocusMode(!isFocusMode)}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-all border ${isFocusMode
-                  ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700'
-                  : 'text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-white/5'
+                ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700'
+                : 'text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-white/5'
                 }`}
             >
               <span className="material-symbols-outlined text-base">center_focus_strong</span>
